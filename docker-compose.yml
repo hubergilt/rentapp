@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:433"
+    volumes:
+      - "./:/var/www/html"
+      - "./symfony.conf:/etc/nginx/conf.d/default.conf"
+    links:
+      - php
+  php:
+    build: "./"
+    volumes:
+      - "./:/var/www/html"
